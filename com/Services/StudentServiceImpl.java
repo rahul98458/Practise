@@ -15,7 +15,9 @@ public class StudentServiceImpl implements StudentServices{
     }
     @Override
     public void deleteStudent(int index) {
-       slist.remove(index);
+      List<Student> list = new ArrayList<>(slist);
+      list.remove(index);
+      System.out.println(list);
     }
 
     @Override

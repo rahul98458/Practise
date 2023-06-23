@@ -16,21 +16,19 @@ public class Test {
     }
     static void choose()
         {
-               System.out.println("student or teacher[s/t]");
+               System.out.println("which yoy want to enter student or teacher[s/t]");
                char choose = in.next().charAt(0);
                if(choose=='s')
                {
                          sadd();
                          sdisplay();
                          sdelete();
-                         sdisplay();
                }
                else
                {
                         tadd();
                         tdisplay();
                         tdelete();
-                        tdisplay();
                }
         }
     
@@ -65,9 +63,18 @@ public class Test {
       }
       static void sdelete()
       {
-        StudentServices ser = new StudentServiceImpl();
-        ser.deleteStudent(0);
-       
+         StudentServices ser = new StudentServiceImpl();
+         System.out.println("enter the name");
+         String name = in.next();
+         List<Student> slist = ser.getStudent();;
+         for (Student student : slist) {
+          int flag = student.getName().compareTo(name);
+          if(flag==0)
+          {
+            // System.out.println(slist.indexOf(student));
+           ser.deleteStudent(slist.indexOf(student));
+          }
+         }
       }
     static void tadd()
     {
@@ -99,9 +106,16 @@ public class Test {
     static void tdelete()
     {
       TeacherServices tserv = new TeacherServiceImple();
-     tserv.deleteTeacher(0);
-
-    
+     List<Teacher> tlist = tserv.displayTeacher();
+     System.out.println("enter the name of teacher of which u want to delete");
+     String name = in.next();
+     for (Teacher teacher : tlist) {
+      int flag = teacher.getName().compareTo(name);
+      if(flag==0)
+      {
+        tserv.deleteTeacher(tlist.indexOf(teacher));
+      }
+     }
     }
 
 }

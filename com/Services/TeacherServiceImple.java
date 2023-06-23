@@ -20,8 +20,9 @@ public class TeacherServiceImple implements TeacherServices {
 
     @Override
     public void deleteTeacher(int index) {
-      teaclist.remove(index);
-   
+      List<Teacher> dellist = new ArrayList<>(teaclist);
+      dellist.remove(index);
+       System.out.println(dellist);
     }
     
 }
